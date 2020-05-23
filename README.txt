@@ -10,7 +10,7 @@ What is an Intal?
 Intal stands for non-negative INTeger of Arbitrary Length not exceeding 1000 digits.
 The integer is stored as a null terminated string composed of ASCII characters. The integers are stored in a big endian style i.e the most significant digit is stored at the head of the string. This is like if we consider a 2 digit number, for example 39, then '3' is stored at str[0], '9' at str[1], and finally null at str[2] as it is the terminating character.
 
----------------------------
+--------------------------
 
 The Functions:
 
@@ -60,4 +60,48 @@ For this first we start off with 1. If n is equal to 0, we return 1. We have def
 intal_bincoeff:
 This function returns the binomial coefficient C(n,k).
 We make use of Pascal's identity C(n,k) = C(n-1,k) + C(n-1,k-1) to find the binomial coefficient. We make use of the dynamic programming algorithm for better efficiency.
+According to Pascal's identity C(n,k) = C(n-1,k) + C(n-1,k-1)
+we keep C(n,0) = 1 and C(n,1) = n
+We then compute C(1,0), C(1,1) first then C(2,0), C(2,1) and C(2,2) using C(1,0), C(1,1). We build up this until C(n, k).
+Given C(n + 1, x) only depends on C(n, y), we need only O(n) extra space, which satisfies the requirement mentioned.
 
+intal_max:
+This function returns the offset of the largest intal in the array. It will return the smallest offset if there are multiple occurances.
+We make use of linear traversal and use intl_compare to compare with each value and the temporary maximum. The maximum value at the end of the traversal is the absolute maximum.
+
+intal_min:
+This function returns the offset fo the smallest intal in the array. It returns the smallest offset if there are multiple occurances.
+We make use of linear traversal and use intl_compare to compare with each value and the temporary minimum. The minimum value at the end of the traversal is the absolute minimum.
+
+intal_search:
+This function returns the offset of the first occurance of the key intal in the array. It returns -1 if the key is not found. We make use of linear search and compare with each element and return the offset as soon as it is found.
+
+intal_binsearch:
+This function returns the offset of the first occurance of the key in the sorted array. It returns -1 if the key is not found. We make use of the divide-and-conquer approach to make sure the time complexity is o(n log n). We make use of the intal_compare function to compare the elements in the array and to return the position of the key in the array.
+
+intal_sort:
+This function is used to sort the array of array of intals. We make use of heap sort to achieve the required time complexity. 
+We make use of a function we create called heap to create the heap to aid in the process of heap sort.
+
+coin_row_problem:
+There is a row of n coins whose values are some positive integers. The goal is to pick up the maximum amount of money subject to the contraint that no two coins adjacent in the intial row can be picked.
+We make use of Dynamic Programming to improve its efficiency. The algorithm used is:
+cr0) = 0
+cr(1) = coin[1]
+cr(n) = max(cr(n-1), coin[n] + cr(n-2)), and finally we return table[2].
+
+--------------------------
+
+Advantages of Intal Library:
+
+1) Intals can be used for higher precision mathematical calculations.
+2) Can be used for scientific computations
+3) The maximum number that can be stored with regular int datatype of C language is -2,147,483,648 to 2,147,483,647, but now upto a thousand digits can be stored in the intal format.
+4) Intal with modification can be used to represent base 128 numbers.
+
+--------------------------
+
+Future Improvements:
+
+1) Can be extended to negative numbers also.
+2) Increase efficiency by using parallel algoriths.
