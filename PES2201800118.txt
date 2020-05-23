@@ -104,4 +104,4 @@ Advantages of Intal Library:
 Future Improvements:
 
 1) Can be extended to negative numbers also.
-2) Increase efficiency by using parallel algoriths.
+2) Increase efficiency by using parallel algorithms.
